@@ -41,6 +41,8 @@ if (isset($_GET['id'])) {
 			":quantity" => $quantity,
 			":user_id" => $user_id,
 		]);
+
+		echo "<script>alert('added to cart successfully')</script>";
 	}
 
 	//validation for the cart
