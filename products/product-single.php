@@ -87,7 +87,7 @@ if (isset($_GET['id'])) {
 
 					<div class="row mt-4">
 						<div class="col-md-6">
-							<div class="form-group d-flex">
+							<!-- <div class="form-group d-flex">
 								<div class="select-wrap ">
 									<div class="icon"><span class="ion-ios-arrow-down"></span></div>
 									<select name="" id="" class="form-control">
@@ -97,7 +97,7 @@ if (isset($_GET['id'])) {
 										<option value="">Extra Large</option>
 									</select>
 								</div>
-							</div>
+							</div> -->
 						</div>
 						<div class="w-100"></div>
 						<div class="input-group col-md-6 d-flex mb-3">
@@ -122,10 +122,12 @@ if (isset($_GET['id'])) {
 					<input name="pro_id" value="<?php echo $singleproduct->id; ?>" type="hidden">
 					<input name="description" value="<?php echo $singleproduct->description; ?>" type="hidden">
 					<?php if ($rowcount > 0): ?>
-						<button name="submit" type="submit" class="btn btn-primary py-3 px-5" disabled>Added to
+						<button name="submit" type="submit" class="btn btn-primary btn-outline-primary py-3 px-5"
+							disabled>Added to
 							Cart</button>
 					<?php else: ?>
-						<button name="submit" type="submit" class="btn btn-primary py-3 px-5">Add to Cart</button>
+						<button name="submit" type="submit" class="btn btn-primary py-3 px-5">Add to
+							Cart</button>
 					<?php endif; ?>
 				</form>
 			</div>
