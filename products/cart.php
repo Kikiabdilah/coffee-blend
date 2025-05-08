@@ -2,10 +2,21 @@
 <?php require "../config/config.php" ?>
 
 <?php
+
+if (!isset($_SESSION['user_id'])) {
+	header("Location: " . APPURL . " ");
+	exit();
+}
 $product = $conn->query("SELECT * FROM cart WHERE user_id='$_SESSION[user_id]'");
 $product->execute();
 
 $allproducts = $product->fetchAll(PDO::FETCH_OBJ);
+
+//cart total
+
+$cart_total = $conn->query("SELECT SUM(price * quantity) as total FROM cart WHERE user_id='$_SESSION[user_id]'");
+$cart_total->execute();
+$allcart_total = $cart_total->fetch(PDO::FETCH_OBJ);
 ?>
 
 
@@ -87,11 +98,11 @@ $allproducts = $product->fetchAll(PDO::FETCH_OBJ);
 					<h3>Cart Totals</h3>
 					<p class="d-flex">
 						<span>Subtotal</span>
-						<span>$20.60</span>
+						<span>$<?php echo $allcart_total->total; ?></span>
 					</p>
 					<p class="d-flex">
 						<span>Delivery</span>
-						<span>$0.00</span>
+						<span>$10.00</span>
 					</p>
 					<p class="d-flex">
 						<span>Discount</span>
@@ -100,7 +111,7 @@ $allproducts = $product->fetchAll(PDO::FETCH_OBJ);
 					<hr>
 					<p class="d-flex total-price">
 						<span>Total</span>
-						<span>$17.60</span>
+						<span>$<?php echo $allcart_total->total + 10 - 3; ?> </span>
 					</p>
 				</div>
 				<p class="text-center"><a href="checkout.html" class="btn btn-primary py-3 px-4">Proceed to Checkout</a>

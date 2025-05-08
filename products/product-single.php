@@ -123,13 +123,17 @@ if (isset($_GET['id'])) {
 					<input name="price" value="<?php echo $singleproduct->price; ?>" type="hidden">
 					<input name="pro_id" value="<?php echo $singleproduct->id; ?>" type="hidden">
 					<input name="description" value="<?php echo $singleproduct->description; ?>" type="hidden">
-					<?php if ($rowcount > 0): ?>
-						<button name="submit" type="submit" class="btn btn-primary btn-outline-primary py-3 px-5"
-							disabled>Added to
-							Cart</button>
+					<?php if (isset($_SESSION['user_id'])): ?>
+						<?php if ($rowcount > 0): ?>
+							<button name="submit" type="submit" class="btn btn-primary btn-outline-primary py-3 px-5"
+								disabled>Added to
+								Cart</button>
+						<?php else: ?>
+							<button name="submit" type="submit" class="btn btn-primary py-3 px-5">Add to
+								Cart</button>
+						<?php endif; ?>
 					<?php else: ?>
-						<button name="submit" type="submit" class="btn btn-primary py-3 px-5">Add to
-							Cart</button>
+						<p>Login to add product cart</p>
 					<?php endif; ?>
 				</form>
 			</div>
