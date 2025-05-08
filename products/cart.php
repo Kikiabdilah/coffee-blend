@@ -17,6 +17,14 @@ $allproducts = $product->fetchAll(PDO::FETCH_OBJ);
 $cart_total = $conn->query("SELECT SUM(price * quantity) as total FROM cart WHERE user_id='$_SESSION[user_id]'");
 $cart_total->execute();
 $allcart_total = $cart_total->fetch(PDO::FETCH_OBJ);
+
+
+// //proced checkout
+if (isset($_POST['checkout'])) {
+	$_SESSION['total_price'] = $_POST['total_price'];
+	header("Location: checkout.php");
+}
+
 ?>
 
 
@@ -112,72 +120,19 @@ $allcart_total = $cart_total->fetch(PDO::FETCH_OBJ);
 					<p class="d-flex total-price">
 						<span>Total</span>
 						<span>$<?php echo $allcart_total->total + 10 - 3; ?> </span>
+						<input type="hidden" value="<?php echo $allcart_total->total + 10 - 3; ?>">
 					</p>
 				</div>
-				<p class="text-center"><a href="checkout.html" class="btn btn-primary py-3 px-4">Proceed to Checkout</a>
-				</p>
+				<form method="POST" action="cart.php">
+					<input type="hidden" name="total_price" value="<?php echo $allcart_total->total + 10 - 3; ?>">
+
+					<button name="checkout" type="submit" class="btn btn-primary py-3 px-4">Proceed to Checkout</button>
+
+				</form>
 			</div>
 		</div>
 	</div>
 </section>
 
-<section class="ftco-section">
-	<div class="container">
-		<div class="row justify-content-center mb-5 pb-3">
-			<div class="col-md-7 heading-section ftco-animate text-center">
-				<span class="subheading">Discover</span>
-				<h2 class="mb-4">Related products</h2>
-				<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
-					the blind texts.</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<div class="menu-entry">
-					<a href="#" class="img" style="background-image: url(images/menu-1.jpg);"></a>
-					<div class="text text-center pt-4">
-						<h3><a href="#">Coffee Capuccino</a></h3>
-						<p>A small river named Duden flows by their place and supplies</p>
-						<p class="price"><span>$5.90</span></p>
-						<p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="menu-entry">
-					<a href="#" class="img" style="background-image: url(images/menu-2.jpg);"></a>
-					<div class="text text-center pt-4">
-						<h3><a href="#">Coffee Capuccino</a></h3>
-						<p>A small river named Duden flows by their place and supplies</p>
-						<p class="price"><span>$5.90</span></p>
-						<p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="menu-entry">
-					<a href="#" class="img" style="background-image: url(images/menu-3.jpg);"></a>
-					<div class="text text-center pt-4">
-						<h3><a href="#">Coffee Capuccino</a></h3>
-						<p>A small river named Duden flows by their place and supplies</p>
-						<p class="price"><span>$5.90</span></p>
-						<p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="menu-entry">
-					<a href="#" class="img" style="background-image: url(images/menu-4.jpg);"></a>
-					<div class="text text-center pt-4">
-						<h3><a href="#">Coffee Capuccino</a></h3>
-						<p>A small river named Duden flows by their place and supplies</p>
-						<p class="price"><span>$5.90</span></p>
-						<p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
 
 <?php require "../includes/footer.php"; ?>
