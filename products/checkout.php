@@ -2,6 +2,19 @@
 <?php require "../config/config.php" ?>
 
 <?php
+
+if (!isset($_SERVER['HTTP_REFERER'])) {
+	// redirect them to your desired location
+	header('location: http://localhost/coffee-blend');
+	exit;
+}
+
+if (!isset($_SESSION['user_id'])) {
+	header("Location: " . APPURL . " ");
+	exit();
+}
+
+
 if (isset($_POST['submit'])) {
 	if (empty($_POST['first_name']) or empty($_POST['last_name']) or empty($_POST['state']) or empty($_POST['street_address']) or empty($_POST['town']) or empty($_POST['zip_code']) or empty($_POST['phone']) or empty($_POST['email'])) {
 		echo "<script>alert('one or more input are empty')</script>";

@@ -1,5 +1,17 @@
 <?php require "../includes/header.php"; ?>
 <?php require "../config/config.php" ?>
+<?php
+if (!isset($_SERVER['HTTP_REFERER'])) {
+    // redirect them to your desired location
+    header('location: http://localhost/coffee-blend');
+    exit;
+}
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: " . APPURL . " ");
+    exit();
+}
+?>
 
 <section class="home-slider owl-carousel">
 

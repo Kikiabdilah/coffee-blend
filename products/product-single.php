@@ -53,7 +53,12 @@ if (isset($_GET['id'])) {
 		$rowcount = $validatecart->rowCount();
 	}
 
+} else {
+	header("location: " . APPURL . "/404.php");
 }
+
+
+
 ?>
 <section class="home-slider owl-carousel">
 
