@@ -51,15 +51,11 @@ $allbookings = $bookings->fetchAll(PDO::FETCH_OBJ);
                             <tbody>
                                 <?php foreach ($allbookings as $bookings): ?>
                                     <tr class="text-center">
-                                        <td class="product-remove"><?php echo $bookings->first_name; ?></td>
-                                        <td class="image-prod"><?php echo $bookings->last_name; ?></td>
-                                        <td class="product-name">
-                                            <h3><?php echo $bookings->date; ?></h3>
-                                        </td>
-                                        <td class="price"><?php echo $bookings->time; ?></td>
-                                        <td>
-                                            <?php echo $bookings->phone; ?>
-                                        </td>
+                                        <td class="total"><?php echo $bookings->first_name; ?></td>
+                                        <td class="total"><?php echo $bookings->last_name; ?></td>
+                                        <td class="total"><?php echo $bookings->date; ?></td>
+                                        <td class="total"><?php echo $bookings->time; ?></td>
+                                        <td class="total"><?php echo $bookings->phone; ?></td>
                                         <td class="total"><?php echo $bookings->message ?></td>
                                         <td class="total"><?php echo $bookings->status ?></td>
                                     </tr>
