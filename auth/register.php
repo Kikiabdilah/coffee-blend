@@ -14,9 +14,7 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-
     $insert = $conn->prepare("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
-
 
     $insert->execute(
       [
@@ -27,7 +25,6 @@ if (isset($_POST['submit'])) {
     );
 
     header("location: login.php");
-
   }
 }
 
