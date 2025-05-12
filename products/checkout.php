@@ -149,7 +149,6 @@ if (isset($_POST['submit'])) {
 								<div class="radio">
 									<button type="submit" name="submit" class="btn btn-primary py-3 px-4">Place an
 										order</button>
-
 								</div>
 							</div>
 						</div>
