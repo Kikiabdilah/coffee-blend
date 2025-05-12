@@ -1,6 +1,12 @@
 <?php require "../includes/header.php"; ?>
 <?php require "../config/config.php" ?>
 <?php
+
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: " . APPURL . " ");
+    exit();
+}
 $bookings = $conn->query("SELECT * FROM bookings WHERE user_id='$_SESSION[user_id]'");
 $bookings->execute();
 $allbookings = $bookings->fetchAll(PDO::FETCH_OBJ);
@@ -18,9 +24,9 @@ $allbookings = $bookings->fetchAll(PDO::FETCH_OBJ);
             <div class="row slider-text justify-content-center align-items-center">
 
                 <div class="col-md-7 col-sm-12 text-center ftco-animate">
-                    <h1 class="mb-3 mt-5 bread">Cart</h1>
-                    <p class="breadcrumbs"><span class="mr-2"><a href="<?php echo APPURL ?>">Your Bookings</a></span>
-                        <span>Cart</span>
+                    <h1 class="mb-3 mt-5 bread">Your Bookings</h1>
+                    <p class="breadcrumbs"><span class="mr-2"><a href="<?php echo APPURL ?>">Home</a></span>
+                        <span>Your Bookings</span>
                     </p>
                 </div>
 
