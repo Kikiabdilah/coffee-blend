@@ -71,7 +71,7 @@ define('ADMINURL', "http://localhost/coffee-blend/admin-panel");
                             </li>
                         <?php else: ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="<?php echo ADMINURL; ?>/admins/login-admins.php">login
+                                <a class="nav-link" href="<?php echo ADMINURL; ?>/admins/login-admins.php">LOGIN
                                 </a>
                             </li>
                         <?php endif; ?>
