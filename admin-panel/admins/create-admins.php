@@ -2,25 +2,33 @@
 <?php require "../../config/config.php"; ?>
 
 <?php
-if (isset($_POST['adminname'])) {
-  if (empty($_POST['adminname']) or empty($_POST['email']) or empty($_POST['password'])) {
-    echo "<script>alert('one or more input are empty')</script>";
-  } else {
-    $adminname = $_POST['adminname'];
-    $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+if (!isset($_SESSION['admin_name'])) {
+  header("location: " . ADMINURL . "/admins/login-admins.php");
+  exit();
+}
+if (isset($_POST['submit'])) {
 
-    $insert = $conn->prepare("INSERT INTO admins (adminname, email, password) VALUES (:adminname, :email, :password)");
 
-    $insert->execute(
-      [
-        ":adminname" => $adminname,
-        ":email" => $email,
-        ":password" => $password
-      ]
-    );
+  if (isset($_POST['adminname'])) {
+    if (empty($_POST['adminname']) or empty($_POST['email']) or empty($_POST['password'])) {
+      echo "<script>alert('one or more input are empty')</script>";
+    } else {
+      $adminname = $_POST['adminname'];
+      $email = $_POST['email'];
+      $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    header("location: admins.php");
+      $insert = $conn->prepare("INSERT INTO admins (adminname, email, password) VALUES (:adminname, :email, :password)");
+
+      $insert->execute(
+        [
+          ":adminname" => $adminname,
+          ":email" => $email,
+          ":password" => $password
+        ]
+      );
+
+      header("location: admins.php");
+    }
   }
 }
 ?>
