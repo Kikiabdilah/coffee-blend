@@ -71,6 +71,4 @@
   </div>
 </section>
 
-<div id="map"></div>
-
 <?php require "includes/footer.php"; ?>
