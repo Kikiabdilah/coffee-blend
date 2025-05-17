@@ -128,9 +128,13 @@ $allreviews = $reviews->fetchAll(PDO::FETCH_OBJ);
 							<textarea name="message" id="" cols="30" rows="2" class="form-control"
 								placeholder="Message"></textarea>
 						</div>
-						<div class="form-group ml-md-4">
-							<button type="submit" name="submit" class="btn btn-white py-3 px-4">Book a Table</button>
-						</div>
+						<?php if (isset($_SESSION['user_id'])): ?>
+							<div class="form-group ml-md-4">
+								<button type="submit" name="submit" class="btn btn-white py-3 px-4">Book a Table</button>
+							</div>
+						<?php else: ?>
+							<p class="text-white ml-4">Login to Booking</p>
+						<?php endif; ?>
 					</div>
 				</form>
 			</div>
